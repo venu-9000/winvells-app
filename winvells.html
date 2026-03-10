@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winvells – Nature's Finest, Direct to You</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green-deep: #1a5c2a;
+    --green-mid: #2d8a47;
+    --green-light: #4caf6a;
+    --green-pale: #e8f5ec;
+    --green-ultra: #f0faf3;
+    --gold: #c9a227;
+    --gold-light: #f0d98a;
+    --white: #ffffff;
+    --gray-soft: #f7faf8;
+    --text-dark: #162420;
+    --text-mid: #3d5a45;
+    --text-light: #6b8a72;
+    --shadow-green: 0 8px 32px rgba(26,92,42,0.13);
+    --radius: 18px;
+    --radius-sm: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--white); color: var(--text-dark); overflow-x: hidden; }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--green-pale);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 40px; box-shadow: 0 2px 20px rgba(26,92,42,0.08);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { height: 52px; width: 52px; object-fit: contain; border-radius: 50%; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--green-deep); }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid); font-weight: 600; font-size: 0.92rem;
+    padding: 8px 16px; border-radius: 30px; transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--green-pale); color: var(--green-deep); }
+  .nav-links .btn-nav {
+    background: var(--green-deep); color: white; padding: 8px 20px;
+    border-radius: 30px; font-weight: 700;
+  }
+  .nav-links .btn-nav:hover { background: var(--green-mid); color: white; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 26px; height: 3px; background: var(--green-deep); border-radius: 3px; transition: 0.3s; }
+
+  /* ===== PAGES ===== */
+  .page { display: none; padding-top: 76px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ===== HOME PAGE ===== */
+  .hero {
+    background: linear-gradient(135deg, #0d3d1f 0%, #1a5c2a 40%, #2d8a47 80%, #3da857 100%);
+    min-height: 90vh; display: flex; align-items: center; position: relative; overflow: hidden;
+    padding: 60px 40px;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { max-width: 600px; z-index: 2; position: relative; }
+  .hero-badge {
+    display: inline-block; background: rgba(255,255,255,0.15); color: var(--gold-light);
+    border: 1px solid rgba(201,162,39,0.5); padding: 6px 18px; border-radius: 30px;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px; backdrop-filter: blur(6px);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: white; line-height: 1.15; margin-bottom: 18px; font-weight: 900;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; max-width: 480px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--green-deep); padding: 14px 32px;
+    border-radius: 40px; font-weight: 800; font-size: 1rem; cursor: pointer;
+    border: none; text-decoration: none; display: inline-block;
+    box-shadow: 0 4px 18px rgba(201,162,39,0.4); transition: all 0.25s;
+  }
+  .btn-primary:hover { background: #b8901f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,162,39,0.5); }
+  .btn-outline {
+    background: transparent; color: white; padding: 13px 30px;
+    border-radius: 40px; font-weight: 700; font-size: 1rem; cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.6); text-decoration: none; display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+  .hero-img-wrap {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 48%;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+  .hero-img-wrap::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right, #1a5c2a 0%, transparent 50%);
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    background: var(--green-deep); display: flex; justify-content: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .stat-item {
+    padding: 20px 40px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1);
+    flex: 1; min-width: 160px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold-light); font-weight: 900; }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Section styles */
+  .section { padding: 80px 40px; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--green-mid); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--green-deep); line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-sub { color: var(--text-light); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+
+  /* Mission section */
+  .mission-section { background: var(--green-ultra); }
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .mission-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-green); height: 420px; }
+  .mission-img img { width: 100%; height: 100%; object-fit: cover; }
+  .mission-content { }
+  .mission-points { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
+  .mission-point { display: flex; gap: 14px; align-items: flex-start; }
+  .mission-icon {
+    width: 42px; height: 42px; background: var(--green-pale); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    border: 2px solid var(--green-light);
+  }
+  .mission-point h4 { font-weight: 700; color: var(--green-deep); margin-bottom: 3px; }
+  .mission-point p { color: var(--text-light); font-size: 0.92rem; line-height: 1.6; }
+
+  /* Product preview */
+  .products-preview { background: white; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .product-card {
+    background: white; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-green); border: 1px solid var(--green-pale);
+    transition: all 0.3s; cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(26,92,42,0.18); }
+  .product-card-img { height: 220px; overflow: hidden; position: relative; }
+  .product-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .product-card:hover .product-card-img img { transform: scale(1.05); }
+  .product-card-badge {
+    position: absolute; top: 12px; left: 12px; background: var(--green-deep); color: white;
+    font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .product-card-body { padding: 22px; }
+  .product-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--green-deep); margin-bottom: 6px; }
+  .product-card-body p { color: var(--text-light); font-size: 0.88rem; line-height: 1.6; margin-bottom: 16px; }
+  .product-card-body .btn-sm {
+    background: var(--green-pale); color: var(--green-deep); padding: 8px 20px;
+    border-radius: 20px; font-weight: 700; font-size: 0.85rem; border: none; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .product-card-body .btn-sm:hover { background: var(--green-deep); color: white; }
+
+  /* Bulk section */
+  .bulk-section {
+    background: linear-gradient(135deg, var(--green-deep) 0%, #0d3d1f 100%);
+    position: relative; overflow: hidden;
+  }
+  .bulk-section::before {
+    content: '🌾'; position: absolute; font-size: 200px; opacity: 0.06;
+    right: -20px; top: 50%; transform: translateY(-50%);
+  }
+  .bulk-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+  .bulk-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius); padding: 36px; backdrop-filter: blur(8px);
+    transition: all 0.3s; cursor: pointer; text-align: center;
+  }
+  .bulk-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-4px); }
+  .bulk-card .icon { font-size: 2.8rem; margin-bottom: 16px; }
+  .bulk-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; margin-bottom: 10px; }
+  .bulk-card p { color: rgba(255,255,255,0.7); font-size: 0.92rem; line-height: 1.6; margin-bottom: 22px; }
+  .btn-gold {
+    background: var(--gold); color: var(--green-deep); padding: 12px 28px;
+    border-radius: 30px; font-weight: 800; cursor: pointer; border: none; font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ===== PRODUCTS PAGE ===== */
+  .products-hero {
+    background: linear-gradient(135deg, var(--green-pale) 0%, #d4edda 100%);
+    padding: 60px 40px; text-align: center;
+  }
+  .products-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--green-deep); margin-bottom: 12px; }
+  .products-hero p { color: var(--text-light); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+
+  .products-full { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
+  .product-full-card {
+    background: white; border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-green); border: 1px solid var(--green-pale);
+    display: grid; grid-template-columns: 1fr 1.2fr; margin-bottom: 50px;
+  }
+  .product-full-card:nth-child(even) { grid-template-columns: 1.2fr 1fr; }
+  .product-full-card:nth-child(even) .product-gallery { order: 2; }
+  .product-full-card:nth-child(even) .product-info { order: 1; }
+  .product-gallery { background: var(--green-ultra); display: flex; flex-direction: column; gap: 12px; padding: 24px; }
+  .product-main-img { height: 280px; border-radius: var(--radius-sm); overflow: hidden; }
+  .product-main-img img { width: 100%; height: 100%; object-fit: cover; }
+  .product-thumb-row { display: flex; gap: 10px; }
+  .product-thumb { flex: 1; height: 90px; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+  .product-thumb:hover { border-color: var(--green-mid); }
+  .product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .product-info { padding: 40px; }
+  .product-tag { display: inline-block; background: var(--green-pale); color: var(--green-deep); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+  .product-info h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--green-deep); margin-bottom: 10px; }
+  .product-info .tagline { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
+  .variants-label { font-weight: 700; color: var(--green-deep); font-size: 0.88rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .variants { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .variant-btn {
+    padding: 8px 20px; border: 2px solid var(--green-pale); border-radius: 30px;
+    color: var(--text-mid); font-weight: 700; cursor: pointer; font-size: 0.88rem;
+    background: white; transition: all 0.2s;
+  }
+  .variant-btn.active, .variant-btn:hover { border-color: var(--green-deep); background: var(--green-deep); color: white; }
+  .product-price { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--green-deep); font-weight: 700; margin-bottom: 6px; }
+  .product-price-note { font-size: 0.82rem; color: var(--text-light); margin-bottom: 22px; }
+  .qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .qty-ctrl { display: flex; align-items: center; border: 2px solid var(--green-pale); border-radius: 30px; overflow: hidden; }
+  .qty-btn { width: 36px; height: 36px; background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--green-deep); font-weight: 700; transition: background 0.2s; }
+  .qty-btn:hover { background: var(--green-pale); }
+  .qty-val { width: 40px; text-align: center; font-weight: 700; color: var(--green-deep); font-size: 1rem; }
+  .add-cart-btn {
+    flex: 1; background: var(--green-deep); color: white; padding: 12px; border: none;
+    border-radius: 30px; font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+  }
+  .add-cart-btn:hover { background: var(--green-mid); transform: translateY(-2px); }
+  .product-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .feature-chip { background: var(--green-pale); color: var(--green-deep); padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+
+  /* Tracking section */
+  .tracking-section { background: var(--green-ultra); padding: 60px 40px; }
+  .tracking-box { max-width: 600px; margin: 40px auto 0; background: white; border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-green); }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-weight: 700; color: var(--green-deep); margin-bottom: 6px; font-size: 0.9rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 16px; border: 2px solid var(--green-pale); border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif; font-size: 0.95rem; color: var(--text-dark);
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-mid); }
+  .form-group textarea { min-height: 90px; resize: vertical; }
+  .btn-green {
+    background: var(--green-deep); color: white; padding: 13px 32px;
+    border-radius: 30px; font-weight: 800; font-size: 0.95rem; cursor: pointer; border: none; width: 100%;
+    transition: all 0.2s;
+  }
+  .btn-green:hover { background: var(--green-mid); }
+  .success-msg { background: var(--green-pale); color: var(--green-deep); padding: 14px 20px; border-radius: var(--radius-sm); font-weight: 700; text-align: center; margin-top: 16px; border: 1px solid var(--green-light); display: none; }
+
+  /* ===== WE BUY / WE SELL ===== */
+  .buy-sell-hero {
+    background: linear-gradient(135deg, #0d3d1f 0%, #1a5c2a 100%);
+    padding: 70px 40px; text-align: center;
+  }
+  .buy-sell-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: white; margin-bottom: 12px; }
+  .buy-sell-hero p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 580px; margin: 0 auto; }
+  .buy-sell-info { padding: 70px 40px; max-width: 1200px; margin: 0 auto; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+  .info-card { background: var(--green-ultra); border-radius: var(--radius); padding: 36px; border: 1px solid var(--green-pale); }
+  .info-card .card-icon { font-size: 2.8rem; margin-bottom: 16px; }
+  .info-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green-deep); margin-bottom: 10px; }
+  .info-card p { color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
+  .info-list { list-style: none; }
+  .info-list li { padding: 6px 0; color: var(--text-mid); font-size: 0.92rem; display: flex; align-items: center; gap: 8px; }
+  .info-list li::before { content: '✓'; color: var(--green-mid); font-weight: 800; }
+  .centered-ctas { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .btn-buy { background: var(--green-deep); color: white; padding: 16px 40px; border-radius: 40px; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; transition: all 0.25s; box-shadow: var(--shadow-green); }
+  .btn-buy:hover { background: var(--green-mid); transform: translateY(-3px); }
+  .btn-sell { background: var(--gold); color: var(--green-deep); padding: 16px 40px; border-radius: 40px; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; transition: all 0.25s; }
+  .btn-sell:hover { background: #b8901f; color: white; transform: translateY(-3px); }
+
+  /* Crops display */
+  .crops-section { background: white; padding: 60px 40px; }
+  .crops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-top: 0; }
+  .crop-card {
+    background: var(--green-ultra); border: 1px solid var(--green-pale); border-radius: var(--radius-sm);
+    padding: 20px 14px; text-align: center; transition: all 0.25s;
+  }
+  .crop-card:hover { border-color: var(--green-mid); transform: translateY(-3px); }
+  .crop-card .crop-icon { font-size: 2rem; margin-bottom: 8px; }
+  .crop-card h4 { font-weight: 700; color: var(--green-deep); margin-bottom: 3px; font-size: 0.88rem; }
+  .crop-card p { font-size: 0.76rem; color: var(--text-light); }
+  .crop-card .badge-avail { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 0.68rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; margin-top: 8px; }
+  .crop-card .badge-soon { display: inline-block; background: #fff8e1; color: #c09000; font-size: 0.68rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; margin-top: 8px; }
+
+  /* ===== ABOUT PAGE ===== */
+  .about-hero {
+    background: linear-gradient(135deg, var(--green-pale) 0%, #c8e6cc 100%);
+    padding: 70px 40px; text-align: center;
+  }
+  .about-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--green-deep); margin-bottom: 12px; }
+  .about-body { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .about-intro { font-size: 1.15rem; color: var(--text-mid); line-height: 1.8; max-width: 780px; margin: 0 auto 50px; text-align: center; }
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 60px; }
+  .value-card { background: var(--green-ultra); border-radius: var(--radius); padding: 30px; border: 1px solid var(--green-pale); text-align: center; }
+  .value-card .v-icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .value-card h4 { font-family: 'Playfair Display', serif; color: var(--green-deep); font-size: 1.15rem; margin-bottom: 8px; }
+  .value-card p { color: var(--text-light); font-size: 0.88rem; line-height: 1.6; }
+  .team-quote {
+    background: var(--green-deep); color: white; border-radius: var(--radius); padding: 50px;
+    text-align: center; max-width: 760px; margin: 0 auto;
+  }
+  .team-quote blockquote { font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.5; margin-bottom: 16px; font-style: italic; }
+  .team-quote cite { color: var(--gold-light); font-size: 0.9rem; font-weight: 700; }
+
+  /* ===== CONTACT PAGE ===== */
+  .contact-hero {
+    background: linear-gradient(135deg, var(--green-pale) 0%, #d4edda 100%);
+    padding: 70px 40px; text-align: center;
+  }
+  .contact-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--green-deep); margin-bottom: 12px; }
+  .contact-body { max-width: 1100px; margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--green-deep); margin-bottom: 20px; }
+  .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; }
+  .contact-detail .cd-icon { width: 42px; height: 42px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-detail h5 { font-weight: 700; color: var(--green-deep); margin-bottom: 3px; }
+  .contact-detail p { color: var(--text-light); font-size: 0.9rem; line-height: 1.5; }
+  .contact-form { background: white; border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-green); border: 1px solid var(--green-pale); }
+  .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--green-deep); margin-bottom: 24px; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 9000;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white; border-radius: var(--radius); padding: 44px; max-width: 560px; width: 100%;
+    max-height: 88vh; overflow-y: auto; position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.25); transform: translateY(20px); transition: transform 0.25s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px; background: none; border: none;
+    font-size: 1.5rem; cursor: pointer; color: var(--text-light); line-height: 1;
+  }
+  .modal-close:hover { color: var(--text-dark); }
+  .modal h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--green-deep); margin-bottom: 6px; }
+  .modal .modal-sub { color: var(--text-light); font-size: 0.92rem; margin-bottom: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--green-deep); color: white; padding: 14px 28px; border-radius: 30px;
+    font-weight: 700; font-size: 0.95rem; z-index: 9999; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transition: transform 0.35s ease;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Order modal */
+  .order-summary { background: var(--green-ultra); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 20px; }
+  .order-row { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 4px 0; color: var(--text-mid); }
+  .order-row.total { font-weight: 800; color: var(--green-deep); font-size: 1rem; border-top: 1px solid var(--green-pale); padding-top: 10px; margin-top: 6px; }
+
+  /* Tracking steps */
+  .tracking-result { display: none; }
+  .tracking-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .step-item { display: flex; gap: 14px; align-items: flex-start; }
+  .step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+  .step-dot.done { background: var(--green-mid); color: white; }
+  .step-dot.current { background: var(--gold); color: var(--green-deep); }
+  .step-dot.pending { background: var(--green-pale); color: var(--text-light); }
+  .step-info h5 { font-weight: 700; color: var(--green-deep); margin-bottom: 2px; }
+  .step-info p { font-size: 0.83rem; color: var(--text-light); }
+
+  /* Footer */
+  footer {
+    background: var(--green-deep); color: white; padding: 50px 40px 24px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand img { height: 50px; margin-bottom: 14px; border-radius: 50%; }
+  .footer-brand p { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.7; }
+  .footer-col h5 { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-light); margin-bottom: 16px; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.88rem; margin-bottom: 8px; transition: color 0.2s; cursor: pointer; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.82rem; }
+  .footer-cert { color: var(--gold-light); font-weight: 700; font-size: 0.82rem; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 10px 20px; }
+    .nav-links { display: none; flex-direction: column; position: fixed; top: 76px; left: 0; right: 0; background: white; padding: 20px; border-bottom: 2px solid var(--green-pale); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero { padding: 50px 24px; min-height: auto; }
+    .hero-img-wrap { display: none; }
+    .hero-content { max-width: 100%; }
+    .mission-grid, .product-full-card, .product-full-card:nth-child(even), .info-grid, .contact-body, .bulk-cards { grid-template-columns: 1fr; }
+    .product-full-card:nth-child(even) .product-gallery, .product-full-card:nth-child(even) .product-info { order: unset; }
+    .section { padding: 50px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .stat-item { min-width: 120px; padding: 16px 20px; }
+  }
+  @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
+    <img src="images/logo.jpg" alt="Winvells Logo">
+    <span class="nav-brand">Win<span>vells</span></span>
+  </a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('products')" id="nav-products">Products</a>
+    <a onclick="showPage('bulkbuy')" id="nav-bulkbuy">We Buy</a>
+    <a onclick="showPage('bulksell')" id="nav-bulksell">We Sell</a>
+    <a onclick="showPage('about')" id="nav-about">About Us</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+    <a class="btn-nav" onclick="showPage('products')">Shop Now</a>
+  </div>
+</nav>
+
+<!-- =================== HOME PAGE =================== -->
+<div class="page active" id="page-home">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🌿 Natural Farming · Farm to Table</div>
+      <h1>Nature's Finest,<br><span>Pure & Unprocessed</span></h1>
+      <p>We bridge the gap between natural farmers and conscious consumers — bringing you 100% pure, chemical-free superfoods sourced directly from farmers who practice traditional, natural farming methods.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" onclick="showPage('products')">Explore Products</a>
+        <a class="btn-outline" onclick="showPage('about')">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="images/naturalfarm1.jpg" alt="Natural Farming">
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Natural & Pure</div></div>
+    <div class="stat-item"><div class="stat-num">FSSAI</div><div class="stat-label">Approved</div></div>
+    <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Preservatives</div></div>
+    <div class="stat-item"><div class="stat-num">Direct</div><div class="stat-label">From Farmers</div></div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="section mission-section">
+    <div class="mission-grid">
+      <div class="mission-img">
+        <img src="images/naturalfarm.jpg" alt="Natural Farming">
+      </div>
+      <div class="mission-content">
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-title">The Bridge Between<br>Farmer & Future</h2>
+        <p class="section-sub">We believe in preserving age-old natural farming traditions while connecting farmers to markets that value purity. Our mission is simple — empower farmers, nourish consumers.</p>
+        <div class="mission-points">
+          <div class="mission-point">
+            <div class="mission-icon">🌾</div>
+            <div><h4>Natural Farming Methods</h4><p>We source exclusively from farmers who use traditional, chemical-free cultivation practices.</p></div>
+          </div>
+          <div class="mission-point">
+            <div class="mission-icon">🤝</div>
+            <div><h4>Fair Farmer Partnerships</h4><p>We pay fair prices and build long-term relationships with farming communities.</p></div>
+          </div>
+          <div class="mission-point">
+            <div class="mission-icon">🏭</div>
+            <div><h4>B2B Supply Chain</h4><p>We supply premium natural ingredients to product companies seeking certified natural raw materials.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BULK SECTION — shown first after mission -->
+  <div class="section bulk-section">
+    <div class="text-center">
+      <div class="section-label" style="color:var(--gold-light)">Bulk Trading</div>
+      <h2 class="section-title" style="color:white">Farmer to Industry Pipeline</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.7);margin:0 auto">Whether you're a farmer looking to sell your harvest or a company seeking quality raw materials — Winvells is your trusted natural partner.</p>
+    </div>
+    <div class="bulk-cards">
+      <div class="bulk-card" onclick="showPage('bulkbuy')">
+        <div class="icon">🌾</div>
+        <h3>We Buy from Farmers</h3>
+        <p>We purchase natural farm produce directly from farmers at fair prices — herbs, spices, pulses, medicinal plants & more from South India.</p>
+        <button class="btn-gold">Register as Farmer →</button>
+      </div>
+      <div class="bulk-card" onclick="showPage('bulksell')">
+        <div class="icon">🏭</div>
+        <h3>We Sell to Companies</h3>
+        <p>We supply premium certified natural raw materials — Moringa, herbal powders, spices, pulses & more — to product manufacturing companies.</p>
+        <button class="btn-gold" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.3)">Enquire as Company →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS PREVIEW -->
+  <div class="section products-preview">
+    <div class="text-center" style="margin-bottom:10px">
+      <div class="section-label">Our Products</div>
+      <h2 class="section-title">Nature's Best Superfoods</h2>
+      <p class="section-sub">Carefully sourced, minimally processed, and packed with nutrition — our products carry the goodness of natural farms straight to you.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" onclick="showPage('products')">
+        <div class="product-card-img">
+          <img src="images/moringa_powder3.jpeg" alt="Moringa Leaf Powder">
+          <div class="product-card-badge">Bestseller</div>
+        </div>
+        <div class="product-card-body">
+          <h3>Moringa Leaf Powder</h3>
+          <p>100% Pure & Natural — rich in Vitamins, Minerals & Amino Acids. FSSAI Approved.</p>
+          <button class="btn-sm" onclick="showPage('products')">View & Buy →</button>
+        </div>
+      </div>
+      <div class="product-card" onclick="showPage('products')">
+        <div class="product-card-img">
+          <img src="images/black_channa.jpeg" alt="Kala Chana">
+          <div class="product-card-badge">Premium</div>
+        </div>
+        <div class="product-card-body">
+          <h3>Unpolished Kala Chana</h3>
+          <p>Premium whole chickpeas — high protein, rich in fiber, farm fresh & unpolished. Direct from farmers.</p>
+          <button class="btn-sm" onclick="showPage('products')">View & Buy →</button>
+        </div>
+      </div>
+      <div class="product-card" style="opacity:0.7">
+        <div class="product-card-img" style="background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:3rem">🌿</div>
+        <div class="product-card-body">
+          <h3>More Products</h3>
+          <p>We're continuously adding new natural farm products. Stay tuned for more superfoods coming soon!</p>
+          <button class="btn-sm" style="background:#eee;color:#999;cursor:default">Coming Soon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== PRODUCTS PAGE =================== -->
+<div class="page" id="page-products">
+  <div class="products-hero">
+    <div class="section-label">Our Products</div>
+    <h1>Pure. Natural. Nutritious.</h1>
+    <p>Handpicked from natural farms, carefully processed and packed with care for your health and wellbeing.</p>
+  </div>
+
+  <div class="products-full">
+    <!-- MORINGA POWDER -->
+    <div class="product-full-card">
+      <div class="product-gallery">
+        <div class="product-main-img" id="moringa-main">
+          <img src="images/moringa_powder3.jpeg" alt="Moringa Powder" id="moringa-main-img">
+        </div>
+        <div class="product-thumb-row">
+          <div class="product-thumb" onclick="changeImg('moringa-main-img', 'images/moringa_powder3.jpeg')"><img src="images/moringa_powder3.jpeg"></div>
+          <div class="product-thumb" onclick="changeImg('moringa-main-img', 'images/moringa_poweder2.jpeg')"><img src="images/moringa_poweder2.jpeg"></div>
+          <div class="product-thumb" onclick="changeImg('moringa-main-img', 'images/moringa_powedr1.jpeg')"><img src="images/moringa_powedr1.jpeg"></div>
+          <div class="product-thumb" onclick="changeImg('moringa-main-img', 'images/moringa_powder4.jpg')"><img src="images/moringa_powder4.jpg"></div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">🌿 Superfood</div>
+        <h2>Moringa Leaf Powder</h2>
+        <p class="tagline">100% Pure & Natural — Nutritionally rich in Vitamins, Minerals & Amino Acids. No additives, no preservatives. FSSAI Approved.</p>
+        <div class="variants-label">Select Weight</div>
+        <div class="variants" id="moringa-variants">
+          <button class="variant-btn" onclick="selectVariant('moringa',this,'250g','₹149')">250g</button>
+          <button class="variant-btn active" onclick="selectVariant('moringa',this,'500g','₹279')">500g</button>
+          <button class="variant-btn" onclick="selectVariant('moringa',this,'1kg','₹499')">1 kg</button>
+        </div>
+        <div class="product-price" id="moringa-price">₹279</div>
+        <div class="product-price-note">Inclusive of all taxes · Free delivery above ₹500</div>
+        <div class="qty-row">
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('moringa',-1)">−</button>
+            <span class="qty-val" id="moringa-qty">1</span>
+            <button class="qty-btn" onclick="changeQty('moringa',1)">+</button>
+          </div>
+          <button class="add-cart-btn" onclick="openOrder('Moringa Leaf Powder','moringa')">Order Now 🛒</button>
+        </div>
+        <div class="product-features">
+          <span class="feature-chip">✓ Boosts Immunity</span>
+          <span class="feature-chip">✓ Rich in Iron & Protein</span>
+          <span class="feature-chip">✓ Weight Management</span>
+          <span class="feature-chip">✓ Healthy Skin & Hair</span>
+          <span class="feature-chip">✓ Improves Digestion</span>
+          <span class="feature-chip">✓ Bone & Muscle Strength</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KALA CHANA -->
+    <div class="product-full-card">
+      <div class="product-gallery">
+        <div class="product-main-img">
+          <img src="images/black_channa.jpeg" alt="Kala Chana" id="black-channa-img">
+        </div>
+        <div class="product-thumb-row">
+          <div class="product-thumb" onclick="changeImg('black-channa-img', 'images/black_channa1.jpg')"><img src="images/black_channa1.jpg"></div>
+          <div class="product-thumb" onclick="changeImg('black-channa-img', 'images/black_channa2.jpg')"><img src="images/black_channa2.jpg"></div>
+          <div class="product-thumb" onclick="changeImg('black-channa-img', 'images/black_channa3.jpg')"><img src="images/black_channa3.jpg"></div>
+          <div class="product-thumb" onclick="changeImg('black-channa-img', 'images/black_channa4.jpg')"><img src="images/black_channa4.jpg"></div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">🫘 Premium Legume</div>
+        <h2>Unpolished Kala Chana</h2>
+        <p class="tagline">Premium whole chickpeas — 100% Natural, Unpolished, Farm Fresh & High Protein. Sourced directly from farmers. Hygienically packed.</p>
+        <div class="variants-label">Select Weight</div>
+        <div class="variants" id="chana-variants">
+          <button class="variant-btn" onclick="selectVariant('chana',this,'250g','₹89')">250g</button>
+          <button class="variant-btn active" onclick="selectVariant('chana',this,'500g','₹159')">500g</button>
+          <button class="variant-btn" onclick="selectVariant('chana',this,'1kg','₹299')">1 kg</button>
+        </div>
+        <div class="product-price" id="chana-price">₹159</div>
+        <div class="product-price-note">Inclusive of all taxes · Free delivery above ₹500</div>
+        <div class="qty-row">
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('chana',-1)">−</button>
+            <span class="qty-val" id="chana-qty">1</span>
+            <button class="qty-btn" onclick="changeQty('chana',1)">+</button>
+          </div>
+          <button class="add-cart-btn" onclick="openOrder('Unpolished Kala Chana','chana')">Order Now 🛒</button>
+        </div>
+        <div class="product-features">
+          <span class="feature-chip">✓ High Protein</span>
+          <span class="feature-chip">✓ Rich in Fiber</span>
+          <span class="feature-chip">✓ No Polish / Wax</span>
+          <span class="feature-chip">✓ Direct From Farmers</span>
+          <span class="feature-chip">✓ Farm Fresh</span>
+          <span class="feature-chip">✓ 100% Natural</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACKING -->
+  <div class="tracking-section">
+    <div class="text-center">
+      <div class="section-label">Order Tracking</div>
+      <h2 class="section-title">Track Your Package</h2>
+      <p class="section-sub" style="margin:0 auto">Enter your order ID to get real-time updates on your delivery.</p>
+    </div>
+    <div class="tracking-box">
+      <div class="form-group">
+        <label>Order ID</label>
+        <input type="text" id="track-input" placeholder="e.g. WNV-2024-001">
+      </div>
+      <button class="btn-green" onclick="trackOrder()">Track My Order</button>
+      <div class="tracking-result" id="tracking-result">
+        <div class="tracking-steps" id="tracking-steps"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== WE BUY PAGE =================== -->
+<div class="page" id="page-bulkbuy">
+  <div class="buy-sell-hero">
+    <div class="section-label" style="color:var(--gold-light)">For Farmers</div>
+    <h1>We Buy From You 🌾</h1>
+    <p>Are you a natural farmer? We're looking to partner with honest farmers who believe in traditional, chemical-free cultivation. Register your interest and we'll connect with you.</p>
+  </div>
+
+  <div class="crops-section">
+    <div class="text-center">
+      <div class="section-label">Currently Sourcing</div>
+      <h2 class="section-title">Crops & Herbs We're Buying</h2>
+      <p class="section-sub" style="margin:10px auto 0;text-align:center">We source directly from natural farmers across South India — spices, herbs, pulses, medicinal plants & more.</p>
+    </div>
+
+    <div style="margin-top:30px;max-width:1100px;margin-left:auto;margin-right:auto">
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌿 Medicinal & Herbal Plants</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Akkarakaaram</h4><p>Pellitory Root</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🌱</div><h4>Moringa Leaves</h4><p>Drumstick Tree Leaves</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🍃</div><h4>Neem Leaves</h4><p>Azadirachta Indica</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌼</div><h4>Brahmi</h4><p>Bacopa Monnieri</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Tulsi</h4><p>Holy Basil</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌱</div><h4>Ashwagandha</h4><p>Indian Ginseng Root</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Shatavari</h4><p>Asparagus Racemosus</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🍃</div><h4>Guduchi / Giloy</h4><p>Tinospora Cordifolia</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Mulethi</h4><p>Liquorice Root</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Vetiver / Khus</h4><p>Vetiveria Zizanioides</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌶️ Spices & Condiments</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">🫚</div><h4>Black Pepper</h4><p>Piper Nigrum</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Curry Leaves</h4><p>Murraya Koenigii</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌰</div><h4>Cardamom</h4><p>Elettaria Cardamomum</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Dry Ginger</h4><p>Zingiber Officinale</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🟡</div><h4>Turmeric</h4><p>Curcuma Longa</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Cloves</h4><p>Syzygium Aromaticum</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌴</div><h4>Cinnamon</h4><p>Cinnamomum Verum</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Fenugreek</h4><p>Methi Seeds</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🫘 Pulses & Legumes</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">🫘</div><h4>Kala Chana</h4><p>Unpolished Black Chickpeas</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🟢</div><h4>Green Moong</h4><p>Whole Green Gram</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🔴</div><h4>Red Lentils</h4><p>Masoor Dal</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🟡</div><h4>Toor Dal</h4><p>Pigeon Pea / Arhar</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">⚫</div><h4>Urad Dal</h4><p>Black Gram</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Horse Gram</h4><p>Kollu / Kulthi</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌴 South India Specialty Crops</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 10px">
+        <div class="crop-card"><div class="crop-icon">🥥</div><h4>Coconut Products</h4><p>Copra / Coconut Oil</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌴</div><h4>Tamarind</h4><p>Tamarindus Indica</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Drumstick</h4><p>Moringa Pods</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Hibiscus Petals</h4><p>Roselle / Shoe Flower</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🍋</div><h4>Amla / Gooseberry</h4><p>Indian Gooseberry</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Sesame Seeds</h4><p>Gingelly / Til</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-sell-info">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="card-icon">✅</div>
+        <h3>Why Sell to Winvells?</h3>
+        <p>We offer fair and transparent pricing for your natural produce without middlemen eating into your earnings.</p>
+        <ul class="info-list">
+          <li>Direct purchase — no middlemen</li>
+          <li>Fair price for natural produce</li>
+          <li>Timely payment guaranteed</li>
+          <li>Long-term partnership opportunity</li>
+          <li>We value natural farming methods</li>
+          <li>Pan-India sourcing network</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📋</div>
+        <h3>What We Look For</h3>
+        <p>Our quality standards are rooted in natural farming. We look for produce that meets these criteria:</p>
+        <ul class="info-list">
+          <li>Natural or organic farming methods</li>
+          <li>No chemical pesticides or fertilizers</li>
+          <li>Freshly harvested produce</li>
+          <li>Proper drying and storage</li>
+          <li>Willingness to provide farm details</li>
+          <li>Consistent supply capability</li>
+        </ul>
+      </div>
+    </div>
+    <div class="centered-ctas">
+      <button class="btn-buy" onclick="openModal('farmer-modal')">📝 Register as a Farmer</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== WE SELL PAGE =================== -->
+<div class="page" id="page-bulksell">
+  <div class="buy-sell-hero">
+    <div class="section-label" style="color:var(--gold-light)">For Companies</div>
+    <h1>We Supply to You 🏭</h1>
+    <p>Are you a product manufacturing company looking for certified natural raw materials? We supply premium quality natural ingredients sourced directly from natural farmers.</p>
+  </div>
+
+  <div class="crops-section">
+    <div class="text-center">
+      <div class="section-label">Currently Supplying</div>
+      <h2 class="section-title">Products We Supply in Bulk</h2>
+      <p class="section-sub" style="margin:10px auto 0;text-align:center">We supply premium natural raw materials sourced from South Indian natural farmers — ready for your production line.</p>
+    </div>
+
+    <div style="margin-top:30px;max-width:1100px;margin-left:auto;margin-right:auto">
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌿 Herbal Powders & Extracts</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Moringa Powder</h4><p>Leaf Powder · Bulk</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🌼</div><h4>Neem Powder</h4><p>Leaf & Seed Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🟡</div><h4>Turmeric Powder</h4><p>Raw & Processed</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌱</div><h4>Brahmi Powder</h4><p>Bacopa Extract</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Tulsi Powder</h4><p>Holy Basil Leaf</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Ashwagandha Powder</h4><p>Root Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🍃</div><h4>Amla Powder</h4><p>Indian Gooseberry</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Hibiscus Powder</h4><p>Roselle Petals</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Curry Leaf Powder</h4><p>Dried & Ground</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌱</div><h4>Shatavari Powder</h4><p>Asparagus Root</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌶️ Spices & Raw Ingredients</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">⚫</div><h4>Black Pepper</h4><p>Whole & Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌰</div><h4>Cardamom</h4><p>Green Pods & Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Dry Ginger</h4><p>Sukku / Sonth</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Cloves</h4><p>Whole & Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌴</div><h4>Cinnamon</h4><p>Sticks & Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Fenugreek Seeds</h4><p>Whole & Powder</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌴</div><h4>Tamarind</h4><p>Block & Paste</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Sesame Seeds</h4><p>White & Black</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🫘 Pulses & Legumes (Unpolished)</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 30px">
+        <div class="crop-card"><div class="crop-icon">🫘</div><h4>Kala Chana</h4><p>Unpolished Black Chickpeas</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🟢</div><h4>Whole Moong</h4><p>Green Gram · Unpolished</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🟡</div><h4>Toor Dal</h4><p>Pigeon Pea · Natural</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">⚫</div><h4>Urad Dal</h4><p>Black Gram · Whole</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Horse Gram</h4><p>Kollu · Natural Farming</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🔴</div><h4>Red Lentils</h4><p>Masoor Dal</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+
+      <div style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:14px;padding:0 4px">🌴 South India Specialties</div>
+      <div class="crops-grid" style="max-width:100%;margin:0 0 10px">
+        <div class="crop-card"><div class="crop-icon">🥥</div><h4>Coconut / Copra</h4><p>Raw & Desiccated</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Moringa Pods</h4><p>Drumstick · Dried</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌾</div><h4>Akkarakaaram</h4><p>Pellitory Root · Bulk</p><span class="badge-avail">✓ Available Now</span></div>
+        <div class="crop-card"><div class="crop-icon">🌿</div><h4>Vetiver Root</h4><p>Khus / Ramacham</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🍋</div><h4>Amla / Gooseberry</h4><p>Dried & Powdered</p><span class="badge-soon">🔜 Coming Soon</span></div>
+        <div class="crop-card"><div class="crop-icon">🌸</div><h4>Hibiscus Petals</h4><p>Dried Roselle Flowers</p><span class="badge-soon">🔜 Coming Soon</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buy-sell-info">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="card-icon">🏆</div>
+        <h3>Why Source from Winvells?</h3>
+        <p>We guarantee quality, purity and traceability for every batch we supply to your production line.</p>
+        <ul class="info-list">
+          <li>FSSAI compliant natural ingredients</li>
+          <li>Traceable farm-to-supply chain</li>
+          <li>Consistent quality every batch</li>
+          <li>Flexible packaging options</li>
+          <li>Competitive bulk pricing</li>
+          <li>Long-term supply agreements</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📦</div>
+        <h3>Supply Capabilities</h3>
+        <p>We can supply in a variety of formats and quantities to suit your production needs:</p>
+        <ul class="info-list">
+          <li>Minimum order: 10 kg per batch</li>
+          <li>Available: raw, dried, powdered forms</li>
+          <li>Custom packaging on request</li>
+          <li>COA and lab report available</li>
+          <li>Shelf-stable, hygienically packed</li>
+          <li>PAN India delivery</li>
+        </ul>
+      </div>
+    </div>
+    <div class="centered-ctas">
+      <button class="btn-sell" onclick="openModal('company-modal')">📋 Submit Company Enquiry</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== ABOUT PAGE =================== -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div class="section-label">Our Story</div>
+    <h1>About Winvells</h1>
+    <p style="color:var(--text-light);max-width:500px;margin:0 auto;font-size:1.05rem">Rooted in nature. Driven by purpose.</p>
+  </div>
+  <div class="about-body">
+    <p class="about-intro">Winvells was born from a simple but powerful belief — that the best food comes from the earth, grown the way nature intended. We are a natural farm-to-table brand that acts as the essential bridge between farmers who practice traditional, chemical-free farming and consumers or companies who want pure, unprocessed products. We don't just sell food — we carry the values of honest farming into every pack we deliver.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="v-icon">🌱</div>
+        <h4>Natural First</h4>
+        <p>We exclusively work with natural and traditional farming practices. No chemicals, no shortcuts.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">🤝</div>
+        <h4>Farmer Empowerment</h4>
+        <p>Fair prices, direct relationships, and long-term partnerships with our farming communities.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">🔬</div>
+        <h4>Quality Assured</h4>
+        <p>FSSAI approved, lab-tested and hygienically packed with complete traceability.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">♻️</div>
+        <h4>Sustainable Future</h4>
+        <p>By choosing natural farming, we help protect soil health and our ecosystem for future generations.</p>
+      </div>
+    </div>
+    <div class="team-quote">
+      <blockquote>"Our vision is to make natural farming economically viable for farmers and nutritionally accessible for everyone. When a farmer thrives and a family eats pure — that's Winvells succeeding."</blockquote>
+      <cite>— The Winvells Team</cite>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONTACT PAGE =================== -->
+<div class="page" id="page-contact">
+  <div class="contact-hero">
+    <div class="section-label">Get in Touch</div>
+    <h1>Contact Us</h1>
+    <p style="color:var(--text-light);max-width:400px;margin:0 auto;font-size:1.05rem">We'd love to hear from you — whether you're a farmer, a company, or a customer.</p>
+  </div>
+  <div class="contact-body">
+    <div class="contact-info">
+      <h3>Reach Out to Us</h3>
+      <div class="contact-detail">
+        <div class="cd-icon">📧</div>
+        <div><h5>Email</h5><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3a4babda5b6bfbfa093b4beb2babffdb0bcbe">[kvsvenu9000@gmail.com]</a></p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">📞</div>
+        <div><h5>Phone / WhatsApp</h5><p>+91 9000276753</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">📍</div>
+        <div><h5>Location</h5><p>Andhra Pradesh, India</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">⏰</div>
+        <div><h5>Business Hours</h5><p>Mon – Sat: 9 AM – 6 PM IST</p></div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">🚚</div>
+        <div><h5>Delivery</h5><p>PAN India · Orders dispatched within 2 business days</p></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name *</label><input type="text" id="c-name" placeholder="Full Name"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="c-phone" placeholder="+91 XXXXX XXXXX"></div>
+      </div>
+      <div class="form-group"><label>Email Address *</label><input type="email" id="c-email" placeholder="you@email.com"></div>
+      <div class="form-group">
+        <label>I am a...</label>
+        <select id="c-type">
+          <option>Customer / Consumer</option>
+          <option>Farmer looking to sell</option>
+          <option>Company looking to buy bulk</option>
+          <option>Partner / Distributor</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message *</label><textarea id="c-msg" placeholder="Tell us how we can help..."></textarea></div>
+      <button class="btn-green" onclick="submitContact()">Send Message →</button>
+      <div class="success-msg" id="contact-success">✅ Your message has been sent! We'll get back to you soon.</div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== FOOTER =================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p>Bridging the gap between natural farmers and conscious consumers. 100% Pure · No Preservatives · FSSAI Approved.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('products')">Our Products</a>
+      <a onclick="showPage('bulkbuy')">We Buy</a>
+      <a onclick="showPage('bulksell')">We Sell</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('contact')">Contact Us</a>
+      <a>Privacy Policy</a>
+      <a>Terms of Service</a>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <a onclick="showPage('products')">Moringa Leaf Powder</a>
+      <a onclick="showPage('products')">Unpolished Kala Chana</a>
+      <a style="opacity:0.4;cursor:default">More Coming Soon</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Winvells. All rights reserved. Made with 🌿 for natural farming.</p>
+    <span class="footer-cert">FSSAI Approved · 100% Natural</span>
+  </div>
+</footer>
+
+<!-- =================== MODALS =================== -->
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="order-modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('order-modal-overlay')">×</button>
+    <h2>Place Your Order</h2>
+    <p class="modal-sub">Fill in your details and we'll confirm your order by email/phone.</p>
+    <div class="order-summary" id="order-summary-box"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Full Name *</label><input type="text" id="o-name" placeholder="Your full name"></div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" id="o-phone" placeholder="+91 XXXXX XXXXX"></div>
+    </div>
+    <div class="form-group"><label>Email Address *</label><input type="email" id="o-email" placeholder="you@email.com"></div>
+    <div class="form-group"><label>Delivery Address *</label><textarea id="o-address" placeholder="Full delivery address with PIN code" style="min-height:70px"></textarea></div>
+    <div class="form-group">
+      <label>Payment Preference</label>
+      <select id="o-payment">
+        <option>UPI / Online Payment</option>
+        <option>Cash on Delivery</option>
+        <option>Bank Transfer</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Special Instructions (Optional)</label><input type="text" id="o-notes" placeholder="Any delivery instructions..."></div>
+    <button class="btn-green" onclick="submitOrder()">Confirm Order & Send →</button>
+    <div class="success-msg" id="order-success">✅ Order placed! We'll contact you shortly to confirm.</div>
+  </div>
+</div>
+
+<!-- FARMER MODAL -->
+<div class="modal-overlay" id="farmer-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('farmer-modal')">×</button>
+    <h2>🌾 Farmer Registration</h2>
+    <p class="modal-sub">Register your interest to sell your natural farm produce to Winvells.</p>
+    <div class="form-row">
+      <div class="form-group"><label>Farmer Name *</label><input type="text" id="f-name" placeholder="Your full name"></div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX"></div>
+    </div>
+    <div class="form-group"><label>Email Address</label><input type="email" id="f-email" placeholder="your@email.com (optional)"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Village / Town *</label><input type="text" id="f-village" placeholder="Village name"></div>
+      <div class="form-group"><label>District *</label><input type="text" id="f-district" placeholder="District name"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>State *</label><input type="text" id="f-state" placeholder="State"></div>
+      <div class="form-group"><label>PIN Code</label><input type="text" id="f-pin" placeholder="PIN code"></div>
+    </div>
+    <div class="form-group">
+      <label>Crop / Produce *</label>
+      <select id="f-crop">
+        <optgroup label="Currently Sourcing">
+          <option>Akkarakaaram (Pellitory Root)</option>
+          <option>Moringa Leaves</option>
+          <option>Kala Chana (Black Chickpeas)</option>
+        </optgroup>
+        <optgroup label="Medicinal & Herbal">
+          <option>Neem Leaves</option>
+          <option>Brahmi (Bacopa)</option>
+          <option>Tulsi (Holy Basil)</option>
+          <option>Ashwagandha Root</option>
+          <option>Shatavari Root</option>
+          <option>Guduchi / Giloy</option>
+          <option>Vetiver / Khus Root</option>
+          <option>Hibiscus Petals</option>
+          <option>Amla / Indian Gooseberry</option>
+        </optgroup>
+        <optgroup label="Spices & Condiments">
+          <option>Black Pepper</option>
+          <option>Turmeric</option>
+          <option>Dry Ginger</option>
+          <option>Cardamom</option>
+          <option>Cloves</option>
+          <option>Cinnamon</option>
+          <option>Fenugreek Seeds</option>
+          <option>Curry Leaves</option>
+          <option>Tamarind</option>
+          <option>Sesame Seeds</option>
+        </optgroup>
+        <optgroup label="Pulses & Legumes">
+          <option>Green Moong (Whole)</option>
+          <option>Toor Dal (Pigeon Pea)</option>
+          <option>Urad Dal (Black Gram)</option>
+          <option>Horse Gram (Kollu)</option>
+          <option>Masoor (Red Lentils)</option>
+        </optgroup>
+        <optgroup label="South India Specialties">
+          <option>Coconut / Copra</option>
+          <option>Moringa Pods (Drumstick)</option>
+        </optgroup>
+        <option>Other (please specify below)</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Estimated Quantity Available *</label><input type="text" id="f-qty" placeholder="e.g. 50 kg, 2 tonnes, etc."></div>
+    <div class="form-group">
+      <label>Farming Method *</label>
+      <select id="f-method">
+        <option>Traditional Natural Farming</option>
+        <option>Organic Certified</option>
+        <option>Chemical-Free (Uncertified)</option>
+        <option>Mixed Methods</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Additional Details</label><textarea id="f-details" placeholder="Tell us about your farm, any certifications, frequency of harvest, etc."></textarea></div>
+    <button class="btn-green" onclick="submitFarmer()">Submit Registration →</button>
+    <div class="success-msg" id="farmer-success">✅ Thank you! We'll contact you within 2 business days.</div>
+  </div>
+</div>
+
+<!-- COMPANY MODAL -->
+<div class="modal-overlay" id="company-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('company-modal')">×</button>
+    <h2>🏭 Company Enquiry</h2>
+    <p class="modal-sub">Register your bulk supply requirement and our team will get back to you.</p>
+    <div class="form-row">
+      <div class="form-group"><label>Contact Person *</label><input type="text" id="co-name" placeholder="Your name"></div>
+      <div class="form-group"><label>Company Name *</label><input type="text" id="co-company" placeholder="Company / Brand name"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Phone Number *</label><input type="tel" id="co-phone" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="form-group"><label>Email Address *</label><input type="email" id="co-email" placeholder="work@company.com"></div>
+    </div>
+    <div class="form-group"><label>Company Location *</label><input type="text" id="co-location" placeholder="City, State"></div>
+    <div class="form-group">
+      <label>Product Interested In *</label>
+      <select id="co-product">
+        <optgroup label="Currently Available">
+          <option>Moringa Leaf Powder</option>
+          <option>Unpolished Kala Chana</option>
+          <option>Akkarakaaram (Pellitory Root)</option>
+        </optgroup>
+        <optgroup label="Herbal Powders & Extracts">
+          <option>Neem Powder</option>
+          <option>Turmeric Powder</option>
+          <option>Brahmi Powder</option>
+          <option>Tulsi Powder</option>
+          <option>Ashwagandha Powder</option>
+          <option>Amla Powder</option>
+          <option>Hibiscus Powder</option>
+          <option>Curry Leaf Powder</option>
+          <option>Shatavari Powder</option>
+        </optgroup>
+        <optgroup label="Spices & Raw Ingredients">
+          <option>Black Pepper (Whole / Powder)</option>
+          <option>Cardamom</option>
+          <option>Dry Ginger</option>
+          <option>Cloves</option>
+          <option>Cinnamon</option>
+          <option>Fenugreek Seeds</option>
+          <option>Tamarind</option>
+          <option>Sesame Seeds</option>
+        </optgroup>
+        <optgroup label="Pulses (Unpolished)">
+          <option>Whole Moong (Green Gram)</option>
+          <option>Toor Dal (Pigeon Pea)</option>
+          <option>Urad Dal (Black Gram)</option>
+          <option>Horse Gram (Kollu)</option>
+        </optgroup>
+        <optgroup label="South India Specialties">
+          <option>Coconut / Copra</option>
+          <option>Vetiver Root</option>
+          <option>Moringa Pods (Drumstick)</option>
+          <option>Hibiscus Petals (Dried)</option>
+        </optgroup>
+        <option>Multiple Products</option>
+        <option>Other (specify below)</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Required Quantity (per month) *</label><input type="text" id="co-qty" placeholder="e.g. 100 kg/month, 1 tonne/month"></div>
+    <div class="form-group">
+      <label>Form Required</label>
+      <select id="co-form">
+        <option>Raw / Whole</option>
+        <option>Dried & Cleaned</option>
+        <option>Powdered</option>
+        <option>Custom — specify below</option>
+      </select>
+    </div>
+    <div class="form-group"><label>GST Number (Optional)</label><input type="text" id="co-gst" placeholder="GSTIN if applicable"></div>
+    <div class="form-group"><label>Additional Requirements</label><textarea id="co-details" placeholder="Quality standards, certifications needed, packaging requirements, etc."></textarea></div>
+    <button class="btn-green" onclick="submitCompany()">Submit Enquiry →</button>
+    <div class="success-msg" id="company-success">✅ Enquiry received! Our team will contact you within 1 business day.</div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ================================================================
+  //  BACKEND — Google Apps Script
+  //  After deploying winvells_backend.gs, paste your Web App URL below
+  // ================================================================
+  const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxpVVpxFew3wMsGgJoYBmdok3kH5UNXatNwCXVC4FQwENi9T-8YmNOvjc1xGgjy3Go/exec';
+
+  async function postToBackend(payload, successElId, btnEl) {
+    const origText = btnEl ? btnEl.textContent : '';
+    if (btnEl) { btnEl.disabled = true; btnEl.textContent = '⏳ Sending…'; }
+
+    try {
+      // Google Apps Script requires no-cors mode
+      // It still processes the request and sends emails/saves to sheet
+      await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+      // no-cors gives opaque response — we treat reaching here as success
+      setMsg(successElId,
+        '✅ Submitted successfully! A confirmation email has been sent to you. We will contact you soon.',
+        false);
+      showToast('✅ Submitted! Check your email for confirmation.');
+      resetForm(btnEl);
+
+    } catch(err) {
+      console.error('Backend error:', err);
+      setMsg(successElId,
+        '⚠️ Could not submit. Please email us directly: kvsvenu9000@gmail.com',
+        true);
+      showToast('⚠️ Please try again or email us directly.');
+    } finally {
+      if (btnEl) { btnEl.disabled = false; btnEl.textContent = origText; }
+    }
+  }
+
+  function setMsg(elId, msg, isError) {
+    if (!elId) return;
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.style.display  = 'block';
+    el.style.background = isError ? '#fff3cd' : '#e8f5ec';
+    el.style.color      = isError ? '#7a4f00' : '#1a5c2a';
+    el.style.border     = '1px solid ' + (isError ? '#ffc107' : '#4caf6a');
+    el.style.padding    = '14px 18px';
+    el.style.borderRadius = '10px';
+    el.style.fontWeight = '600';
+    el.textContent = msg;
+  }
+
+  function resetForm(btnEl) {
+    if (!btnEl || !btnEl.closest) return;
+    const wrap = btnEl.closest('.modal, .contact-form');
+    if (wrap) wrap.querySelectorAll('input, textarea').forEach(el => { el.value = ''; });
+  }
+  // ================================================================
+
+  // Page navigation
+  // Page navigation
+  const pages = ['home','products','bulkbuy','bulksell','about','contact'];
+
+  window.showPage = function(id) {
+    pages.forEach(p => {
+      document.getElementById('page-'+p).classList.remove('active');
+      const navEl = document.getElementById('nav-'+p);
+      if(navEl) navEl.classList.remove('active');
+    });
+    document.getElementById('page-'+id).classList.add('active');
+    const navEl = document.getElementById('nav-'+id);
+    if(navEl) navEl.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  window.toggleMenu = function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Product variant & qty
+  const variantData = { moringa: { size:'500g', price:'₹279' }, chana: { size:'500g', price:'₹159' } };
+  const qtyData = { moringa: 1, chana: 1 };
+
+  window.selectVariant = function(prod, btn, size, price) {
+    document.querySelectorAll(`#${prod}-variants .variant-btn`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    variantData[prod] = { size, price };
+    document.getElementById(`${prod}-price`).textContent = price;
+  }
+
+  window.changeQty = function(prod, delta) {
+    qtyData[prod] = Math.max(1, qtyData[prod] + delta);
+    document.getElementById(`${prod}-qty`).textContent = qtyData[prod];
+  }
+
+  window.changeImg = function(id, src) { document.getElementById(id).src = src; }
+
+  // Order modal
+  let currentOrderProduct = '';
+  let currentOrderKey = '';
+
+  window.openOrder = function(productName, key) {
+    currentOrderProduct = productName;
+    currentOrderKey = key;
+    const v = variantData[key];
+    const q = qtyData[key];
+    const priceNum = parseInt(v.price.replace('₹','').replace(',',''));
+    const total = priceNum * q;
+    document.getElementById('order-summary-box').innerHTML = `
+      <div class="order-row"><span>Product</span><span>${productName}</span></div>
+      <div class="order-row"><span>Size</span><span>${v.size}</span></div>
+      <div class="order-row"><span>Quantity</span><span>${q} pack(s)</span></div>
+      <div class="order-row"><span>Unit Price</span><span>${v.price}</span></div>
+      <div class="order-row total"><span>Total</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    `;
+    document.getElementById('order-success').style.display = 'none';
+    openModal('order-modal-overlay');
+  }
+
+  window.submitOrder = function() {
+    const name    = document.getElementById('o-name').value.trim();
+    const phone   = document.getElementById('o-phone').value.trim();
+    const email   = document.getElementById('o-email').value.trim();
+    const address = document.getElementById('o-address').value.trim();
+    if(!name || !phone || !address) { showToast('⚠️ Please fill in all required fields'); return; }
+    const v = variantData[currentOrderKey];
+    const q = qtyData[currentOrderKey];
+    const total = '₹' + (parseInt(v.price.replace('₹','').replace(',','')) * q).toLocaleString('en-IN');
+    const btn = document.querySelector('#order-modal-overlay .btn-green');
+    postToBackend({
+      type: 'Order',
+      name, phone, userEmail: email,
+      product: currentOrderProduct,
+      size: v.size,
+      quantity: String(q),
+      total,
+      payment: document.getElementById('o-payment').value,
+      address,
+      notes: document.getElementById('o-notes').value,
+    }, 'order-success', btn);
+  }
+
+    window.submitFarmer = function() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const village = document.getElementById('f-village').value.trim();
+    const crop    = document.getElementById('f-crop').value;
+    const qty     = document.getElementById('f-qty').value.trim();
+    if(!name || !phone || !village || !qty) { showToast('⚠️ Please fill in all required fields'); return; }
+    const btn = document.querySelector('#farmer-modal .btn-green');
+    postToBackend({
+      type: 'Farmer',
+      name, phone,
+      userEmail: document.getElementById('f-email').value.trim(),
+      village,
+      district:     document.getElementById('f-district').value,
+      state:        document.getElementById('f-state').value,
+      pin:          document.getElementById('f-pin').value,
+      crop,
+      quantity:     qty,
+      farmingMethod: document.getElementById('f-method').value,
+      details:      document.getElementById('f-details').value,
+    }, 'farmer-success', btn);
+  }
+
+    window.submitCompany = function() {
+    const name    = document.getElementById('co-name').value.trim();
+    const company = document.getElementById('co-company').value.trim();
+    const phone   = document.getElementById('co-phone').value.trim();
+    const email   = document.getElementById('co-email').value.trim();
+    const qty     = document.getElementById('co-qty').value.trim();
+    if(!name || !company || !phone || !email || !qty) { showToast('⚠️ Please fill in all required fields'); return; }
+    const btn = document.querySelector('#company-modal .btn-green');
+    postToBackend({
+      type: 'Company',
+      name, phone, userEmail: email,
+      company,
+      location:  document.getElementById('co-location').value,
+      product:   document.getElementById('co-product').value,
+      quantity:  qty,
+      form:      document.getElementById('co-form').value,
+      gst:       document.getElementById('co-gst').value,
+      details:   document.getElementById('co-details').value,
+    }, 'company-success', btn);
+  }
+
+    window.submitContact = function() {
+    const name  = document.getElementById('c-name').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const msg   = document.getElementById('c-msg').value.trim();
+    if(!name || !email || !msg) { showToast('⚠️ Please fill in all required fields'); return; }
+    const btn = document.querySelector('.contact-form .btn-green');
+    postToBackend({
+      type: 'Contact',
+      name,
+      phone:       document.getElementById('c-phone').value.trim(),
+      userEmail:   email,
+      enquiryType: document.getElementById('c-type').value,
+      message:     msg,
+    }, 'contact-success', btn);
+  }
+
+    // Tracking
+  window.trackOrder = function() {
+    const id = document.getElementById('track-input').value.trim();
+    if(!id) { showToast('⚠️ Please enter your Order ID'); return; }
+    
+    const steps = [
+      { label: 'Order Confirmed', desc: `Order ${id} received and confirmed`, status: 'done' },
+      { label: 'Processing', desc: 'Your order is being packed', status: 'done' },
+      { label: 'Dispatched', desc: 'Handed over to courier', status: 'current' },
+      { label: 'In Transit', desc: 'On the way to your location', status: 'pending' },
+      { label: 'Delivered', desc: 'Package delivered', status: 'pending' }
+    ];
+    
+    const icons = { done: '✓', current: '→', pending: '○' };
+    const html = steps.map(s => `
+      <div class="step-item">
+        <div class="step-dot ${s.status}">${icons[s.status]}</div>
+        <div class="step-info"><h5>${s.label}</h5><p>${s.desc}</p></div>
+      </div>`).join('');
+    
+    document.getElementById('tracking-steps').innerHTML = html;
+    document.getElementById('tracking-result').style.display = 'block';
+    showToast('📦 Tracking info loaded for ' + id);
+  }
+
+  // Modal helpers
+  window.openModal = function(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeModal = function(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', function(e) { if(e.target === this) window.closeModal(this.id); });
+  });
+  window.showToast = function(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+</script>
+</body>
+</html>
